@@ -1,0 +1,18 @@
+.font-valore {
+    font-size: large;
+}
+.font-valore-1 {
+    font-size: medium;
+}
+.font-valore-2 {
+    font-size: large;
+    font-weight: bold;
+}
+.font-valore-targa {
+    font-size: larger;
+    font-weight: bold;
+}
+.font-valore-max-width {
+    font-size: large;
+    width: fit-content;
+}

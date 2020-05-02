@@ -1,0 +1,36 @@
+<div class="wrapper wrapper-content  animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-lg-12 text-center">
+              <h2>Riepologo lavori autovetture - {{giorno}}</h2>
+              <br/>
+              Cambia giorno: <input type="text" ngbDatepicker #filtroGiorno="ngbDatepicker" (click)="filtroGiorno.toggle()" (dateSelect)="onDateSelect($event)"/>
+              <br/><br/>
+              <table class="table table-bordered" cellpadding="0" cellspacing="0">
+                <thead>
+                <tr>
+                  <td class="text-center"></td>
+                  <th *ngFor="let ora of oreLavorative"  class="text-center" colspan="60">{{ora}}:00</th>
+                  <td>Totali</td>
+                </tr>
+                <tbody>
+                <tr *ngFor="let targa of getTarghe(); index as i" style='border-bottom:1px solid #e7eaec'>
+                  <th class="text-center" style="max-width: 5%;">{{targa}}</th>
+                  <td *ngFor="let minuto of minutiLavorativi"
+                      class="text-center" style="max-width: 1px; padding: 0; border: none;"
+                      [style.border-right]="minuto % 60 == 0 ? '1px solid #e7eaec' : '0'"
+                      [style.background-color]="getColor(targa, minuto-1)">&nbsp;</td>
+                  <td>{{getColor(targa, 781)}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

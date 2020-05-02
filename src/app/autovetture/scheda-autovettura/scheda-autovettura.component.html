@@ -1,0 +1,154 @@
+<div class="wrapper wrapper-content  animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content" id="ibox-content">
+          
+          <div class="wrapper border-bottom white-bg">
+            <div style="
+            margin-left: 2px;
+            margin-right: 2px;
+            margin-bottom: 15px;
+            /* width: max-content; */
+            /* min-width: 500px; */
+            text-align: center;
+            box-shadow: inset 0px 0px 2px 0px black; width: 100%;
+          ">
+              <img  src="assets/img/logo-abm.jpg">
+            </div>
+          <div class="row  text-center wrapper  white-bg">
+            <div class="col-lg-12">
+              <h2><strong>Dati autovettura</strong> </h2>
+            </div>
+          </div>
+          <div class="row text-black-50 wrapper white-bg">
+            <div class="col-lg-12 " style="font-size: 400%; font-weight: bold; background-color: lightgrey;">
+              <h1>TARGA: <strong>{{autovettura.targa | uppercase}}</strong></h1>
+            </div>
+          </div>
+          <div class="row text-black-50 wrapper white-bg">
+            <div class="col-lg-12 " style="padding-top: 10px; background-color: lightgrey; text-align: right; ">
+              <h2 [hidden]="hideForm()"><button (click)='print()' type="button" class="btn btn-sm btn-primary m-t-n-xs hideOnPrint font-valore-2"><strong>Stampa scheda</strong></button></h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 b-r">
+              <table class="table table-bordered" [formGroup]="lavoroForm">
+                <tbody>
+                <tr>
+                  <th width='15%'>Marca</th>
+                  <td width='25%' class="font-valore"><h2><strong>{{autovettura.marca}}</strong></h2></td>
+                  <td width='60%' rowspan="6">
+                    <textarea class="font-valore-2" [(ngModel)]="lavoroDesc"  formControlName="descrizione" placeholder="Descrizione lavoro ..." style="width: 100%;" rows="15"></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <th width='15%'>Modello</th>
+                  <td width='25%' class="font-valore"><h2><strong>{{autovettura.modello}}</strong></h2></td>
+                </tr>
+                <tr>
+                  <th width='15%'>Anno immatricolazione</th>
+                  <td width='25%' class="font-valore">{{autovettura.annoImmatricolazione}}</td>
+                </tr>
+                <tr>
+                  <th width='15%'>Colore</th>
+                  <td width='25%' class="font-valore">{{autovettura.colore}}</td>
+                </tr>
+                <tr>
+                  <th width='15%'>Chiave Nr.</th>
+                  <td width='25%' class="font-valore">
+                    {{autovettura.cilindrata}}
+                    <!-- <div class="col-sm-10">
+                      <input type="text" name="cilindrata" formControlName="cilindrata" value={{autovettura.cilindrata}}>
+                    </div> -->
+                  </td>
+                </tr>
+                <tr>
+                  <th width='15%'>Km percosi</th>
+                  <td width='25%' class="font-valore">{{autovettura.km}}</td>
+                </tr>
+                <tr>
+                  <th width='15%'>Carburante</th>
+                  <td width='25%' class="font-valore">{{autovettura.carburante}}</td>
+                </tr>
+                <!-- <tr>
+                  <th width='15%'>Numero porte</th>
+                  <td width='25%'>{{autovettura.numeroPorte}}</td>
+                  <th width='50%' class="text-center">Tipologia lavoro</th>
+                </tr> -->
+                <tr>
+                  <th width='25%'>Proprietario</th>
+                  <td width='25%' class="font-valore">{{autovettura.proprietario}}</td>
+                  <td width='50%'>
+                    <select formControlName="tipologia" style="width:100%" class="font-valore-2">
+                      <option value="" selected>Seleziona ...</option>
+                      <option value="revisione">Revisione</option>
+                      <option value="cambio_gomme">Cambio gomme</option>
+                      <option value="tagliando">Tagliando</option>
+                    </select>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row hideOnScreen text-center">
+            <br/><br/><br/>
+            <div class="qrCodelavoroOnPrint text-center">
+                  <div class="font-bold">Inizio lavori</div>
+                  <ngx-qrcode [qrc-element-type]="img" [qrc-value] = "qrInizioLavoro()"></ngx-qrcode>
+            </div>
+            <div class="qrCodelavoroOnPrint text-center">
+              <div class="font-bold">Fine lavori</div>
+              <ngx-qrcode [qrc-element-type]="img" [qrc-value] = "qrFineLavoro()"></ngx-qrcode>
+            </div>
+          </div>
+          <br/><br/>
+          <hr class="hideOnScreen">
+          <br/><br/><br/><br/>
+          <div class="row hideOnScreen text-center">
+            <div class="qrCodeDipendenteOnPrint text-center col-print-5" *ngFor="let dipendente of dipendenti">
+              <div class="font-bold">{{dipendente.sigla | uppercase}} <br/> {{dipendente.cognome}}&nbsp;{{dipendente.nome}}</div>
+              
+              <ngx-qrcode [qrc-element-type]="img" [qrc-value] = "qrCodeDipendente(dipendente)"></ngx-qrcode>
+              <br/><br/>
+              
+            </div>
+          </div> 
+            <!--
+            <div class="col-lg-4 text-center">
+              <h2>Lavori predefiniti</h2>
+              <div class="contact-box">
+                <div class="col-sm-12 text-center">
+                  <div class="m-t-xs font-bold">15 minuti</div>
+                  <ngx-qrcode [qrc-class]="qrCodeRed" [qrc-element-type]="img" [qrc-value] = "lavoro15()"></ngx-qrcode>
+                </div>
+                <div class="col-sm-8">
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="contact-box">
+                <div class="col-sm-12 text-center">
+                  <div class="m-t-xs font-bold">30 minuti</div>
+                  <ngx-qrcode [qrc-class]="qrCodeRed" [qrc-element-type]="img" [qrc-value] = "lavoro30()"></ngx-qrcode>
+                </div>
+                <div class="col-sm-8">
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="contact-box">
+                <div class="col-sm-12 text-center">
+                  <div class="m-t-xs font-bold">60 minuti</div>
+                  <ngx-qrcode [qrc-class]="qrCodeRed" [qrc-element-type]="img" [qrc-value] = "lavoro60()"></ngx-qrcode>
+                </div>
+                <div class="col-sm-8">
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

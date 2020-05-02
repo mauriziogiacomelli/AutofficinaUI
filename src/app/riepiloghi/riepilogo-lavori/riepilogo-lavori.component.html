@@ -1,0 +1,69 @@
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+            <div class="row">
+              <div class="col-lg-12 text-center">
+                <h2>Riepilogo lavori per periodo/targa</h2>
+                <br/>
+                  
+                <div style="padding-bottom: 10px">
+                  <span class="font-valore-2">Giorni selezionati -  DAL: </span> 
+                  <input class="font-valore"  ngbDatepicker #filtroGiornoDal="ngbDatepicker" (dateSelect)="onDateSelectDal($event)"
+                  (click)="filtroGiornoDal.toggle()" />
+                  <span class="font-valore-2">  AL: </span> 
+                  <input class="font-valore"  ngbDatepicker #filtroGiornoAl="ngbDatepicker" (dateSelect)="onDateSelectAl($event)"
+                  (click)="filtroGiornoAl.toggle()" />
+                </div>
+                <div style="padding-bottom: 10px">
+                  <span class="font-valore-2">  Targa: </span> 
+                  <input class="font-valore"  (blur)="onTargaSelect($event)"/>
+                <div>
+                <div style="padding-top: 10px">
+                  <button class="btn" type="button" (click)="getVistaLavori()">Ricerca</button>
+                  </div>
+  
+                  <br/><br/>
+                <table class="table table-bordered" cellpadding="0" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th scope="col">idLavoro / Targa</th>
+                      <th scope="col">Data inizio/fine</th>
+                      <th scope="col">dipendente</th>
+                      <th scope="col" style="max-width: fit-content">Totale Lavori: <h2 style="max-width: fit-content;">
+                        <strong>{{vistaLavori[0].totaleRicerca}} </strong></h2> <br/> 
+                        <span class="text-center">Tot. parziale</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let lavoro of vistaLavori; index as i" style='border-bottom:1px solid #e7eaec'>
+                    <th class="text-center" style="max-width: 5%;"><a routerLink="../../autovetture/scheda/{{lavoro.idAuto}}/{{lavoro.idLavoro}}">{{lavoro.idLavoro}} - {{lavoro.targa}}</a></th>
+                    <td > 
+                      <span >      inizio {{formattaData(lavoro.inizio)}}; <br/>fine {{formattaData(lavoro.fine)}} </span>
+                      <br/>
+                    </td>
+                    <td>
+                    <span> {{lavoro.decodeDipendente}} <span style="color: white">  {{lavoro.idDipendente}}</span></span>
+                    </td>
+                    <td class="text-left">
+                      <!-- <span><h2><strong> {{lavoro.totaleRicerca != null ? ' Totale ricerca :' : ''}} {{lavoro.totaleRicerca}}</strong></h2></span>
+                      <br/> -->
+                      <span> {{lavoro.totale}}   </span>
+                    </td>
+                    <!-- <td *ngFor="let minuto of minutiLavorativi"
+                        class="text-center" style="max-width: 1px; padding: 0; border: none;"
+                        [style.border-right]="minuto % 60 == 0 ? '1px solid #e7eaec' : '0'"
+                        [style.background-color]="getColor(targa, minuto-1)">&nbsp;</td>
+                    <td>{{getColor(targa, 781)}}</td> -->
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

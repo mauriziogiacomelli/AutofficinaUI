@@ -1,0 +1,38 @@
+<nav class="navbar-default navbar-static-side hideOnPrint" role="navigation" *ngIf='isBoss()'>
+  <div class="sidebar-collapse">
+    <ul class="nav metismenu" id="side-menu">
+      <li class="nav-header">
+        <div class="dropdown profile-element">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <span class="clear">
+                <span class="block m-t-xs">
+                  <strong class="font-bold">{{user}}</strong>
+                </span>
+                <span class="text-muted text-xs block">{{ruolo}} <b class="caret"></b></span>
+              </span>
+          </a>
+          <ul class="dropdown-menu animated fadeInRight m-t-xs">
+            <li><a (click)='logout()'>Esci</a></li>
+          </ul>
+        </div>
+        <div class="logo-element">
+          AO
+        </div>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/dipendenti"><i class="fa fa-th-large"></i> <span class="nav-label font-valore-2">Dipendenti</span></a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/autovetture"><i class="fa fa-th-large"></i> <span class="nav-label font-valore-2">Autovetture</span></a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/riepiloghi"><i class="fa fa-th-large"></i><span class="nav-label font-valore-2">Riepiloghi</span></a>
+        <ul class="nav nav-second-level collapse in">
+          <li><a href="/riepiloghi/dipendenti" class="font-valore-2">Dipendenti</a></li>
+          <li><a href="/riepiloghi/autovetture" class="font-valore-2">Autovetture</a></li>
+          <li><a href="/riepiloghi/lavori" class="font-valore-2">Lavori</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

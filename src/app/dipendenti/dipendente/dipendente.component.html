@@ -1,0 +1,75 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <form [formGroup]="dipendenteForm" (ngSubmit)="salvaDipendente()" class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Nome (*)</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="nome" formControlName="nome" required/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Cognome</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="cognome" formControlName="cognome" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Foto</label>
+              <div class="col-sm-10">
+                <input type="file" ng2FileSelect [uploader]="uploader"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Indirizzo</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="via" formControlName="via"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Citta</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="citta" formControlName="citta"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Cellulare</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="cellulare" formControlName="cellulare"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Ruolo</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="ruolo" formControlName="ruolo"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Sigla (*)</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="ruolo" formControlName="sigla" required/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Altro</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" name="altro" formControlName="altro"></textarea>
+              </div>
+            </div>
+            <div ><label class="col-sm-2 control-label">(*) Campo obbligatorio</label></div>
+            <input type="hidden" class="form-control" name="id" formControlName="id"/>
+            <input type="hidden" class="form-control" name="foto" formControlName="foto"/>
+            <div class="form-group">
+              <div class="col-sm-4 col-sm-offset-2">
+                <button class="btn btn-white" type="reset" (click)="clean()">Pulisci</button>
+                <button class="btn btn-primary" type="submit" [disabled]="!dipendenteForm.valid">Salva dati</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

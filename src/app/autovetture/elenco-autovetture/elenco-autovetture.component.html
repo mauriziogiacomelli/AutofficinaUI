@@ -1,0 +1,72 @@
+<div class="wrapper border-bottom white-bg">
+  <div class="col-lg-10">
+    <h2>Elenco autovetture</h2>
+  </div>
+  <div class="col-lg-2 center-orientation">
+    <h2>
+      <a routerLink="new">
+        <button type="button" class="btn btn-sm btn-primary m-t-n-xs font-valore-2">Nuova autovettura</button>
+      </a>
+    </h2>
+  </div>
+</div>
+<br/><br/><br/>
+<div class="wrapper wrapper-content  animated fadeInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div class="clients-list">
+            <div class="tab-content">
+              <div class="full-height-scroll">
+                <div class="table-responsive">
+                  <form [formGroup]="autovettureForm" >
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <th class="font-valore-2">Targa</th>
+                      <th class="font-valore-2">Marca</th>
+                      <th class="font-valore-2">Proprietario</th>
+                      <th class="font-valore-2">In lavoro da</th>
+                      <th class="font-valore-2">Azione</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>
+                        <input  type="text" class="form-control font-valore-max-width" name="targa" formControlName="targa" placeholder="Filtra per targa ..." (input)="filter()"/>
+                      </td>
+                      <td>
+                        <input type="text" class="form-control font-valore-max-width" name="marca" formControlName="marca" placeholder="Filtra per marca ..." (input)="filter()"/>
+                      </td>
+                      <td>
+                        <input type="text" class="form-control font-valore-max-width" name="proprietario" formControlName="proprietario" placeholder="Filtra per proprietario ..." (input)="filter()"/>
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr *ngFor="let autovettura of autovetture | paginate: config">
+                      <td><a routerLink="scheda/{{autovettura.id}}" class="client-link font-valore">{{autovettura.targa}}</a></td>
+                      <td><a routerLink="scheda/{{autovettura.id}}" class="client-link font-valore-1">{{autovettura.marca}}</a></td>
+                      <td><a routerLink="scheda/{{autovettura.id}}" class="client-link font-valore-1git ">{{autovettura.proprietario}}</a></td>
+                      <td>
+                        {{getLavoratoreAttivo(autovettura.targa)}}
+                      </td>
+                      <td>
+                        <a routerLink="{{autovettura.id}}">
+                          <button type="button" class="btn btn-sm btn-primary m-t-n-xs font-valore-2"><strong>Modifica</strong></button>
+                        </a>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <pagination-controls *ngIf="autovetture && autovetture.length > config.itemsPerPage" (pageChange)="pageChange($event)" class="my-pagination text-center"></pagination-controls>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,55 @@
+<div class="wrapper border-bottom white-bg">
+  <div style="
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 15px;
+  /* width: max-content; */
+  /* min-width: 500px; */
+  text-align: center;
+  box-shadow: inset 0px 0px 2px 0px black; width: 100%;
+">
+    <img  src="assets/img/logo-abm.jpg">
+  </div>
+  <div class="col-lg-10">
+    <h2>Elenco dipendenti</h2>
+  </div>
+  <div class="col-lg-2 center-orientation">
+    <h2>
+      <a routerLink="new">
+        <button type="button" class="btn btn-sm btn-primary m-t-n-xs font-valore-2"><strong>Nuovo dipendente</strong></button>
+      </a>
+    </h2>
+  </div>
+</div>
+<br/><br/><br/>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-4" *ngFor="let dipendente of dipendenti">
+      <div class="contact-box">
+        <a routerLink="{{dipendente.id}}">
+          <div class="col-sm-4">
+            <div class="text-center">
+              
+              <img class="img-circle m-t-xs img-responsive" *ngIf="!isBoss(dipendente)"  src="assets/img/logo-meccanico.png">
+              <img class="img-circle m-t-xs img-responsive" *ngIf="isBoss(dipendente)"  src="assets/img/logo-boss.png">
+              
+              <div class="m-t-xs font-bold">{{dipendente.ruolo}}</div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <h3><strong>{{dipendente.nome}} {{dipendente.cognome}} <span style="font-weight: 900; font-size: x-large;">({{dipendente.sigla}})</span></strong></h3>
+            <p>{{dipendente.via}}</p>
+            <p>{{dipendente.citta}}</p>
+            <p>Cellulare {{dipendente.cellulare}}</p>
+          </div>
+          <div class="clearfix"></div>
+          <br/>
+          <div style="text-align: center;">
+            <a class="font-valore-2" routerLink="giornataLavorativa/{{dipendente.id}}">Giornata lavorativa</a>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+

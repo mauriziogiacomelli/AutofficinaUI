@@ -1,0 +1,33 @@
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div style="width:100%">
+        <!-- <div>
+            <h1 class="logo-name"></h1> -->
+            <div style="
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 15px;
+  /* width: max-content; */
+  /* min-width: 500px; */
+  text-align: center;
+  /* box-shadow: inset 0px 0px 2px 0px black; width: 100%; */
+">
+    <img  src="assets/img/logo-abm.jpg">
+  </div>
+        <!-- </div> -->
+        <!-- <h2>AUTOFFICINA ABM</h2> -->
+        <h3>GESTIONALE LAVORI</h3>
+        <hr/>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="m-t">
+            <div class="form-group">
+                <input  type="text" class="form-control font-valore-2" placeholder="Utente" formControlName="username" required >
+            </div>
+            <div class="form-group">
+                <div>
+                <input   #x type="password" class="form-control font-valore-2" placeholder="Password" formControlName="password" required >
+                <button style="float: right;" type="button" (click)="x.type=x.type=='password'?'text':'password'">Mostra password</button>
+            </div>
+                </div>
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary block full-width m-b font-valore-2">Login</button>
+        </form>
+</div>
+
